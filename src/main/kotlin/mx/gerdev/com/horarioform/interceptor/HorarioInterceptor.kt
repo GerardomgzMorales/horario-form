@@ -49,7 +49,7 @@ class HorarioInterceptor : HandlerInterceptor {
 
 
         if (handler is HandlerMethod) {
-            modelAndView?.let { it.addObject("horario", request.getAttribute("mensaje") as String) }
+            modelAndView?.addObject("horario", request.getAttribute("mensaje") as String)
         }
     }
 }
