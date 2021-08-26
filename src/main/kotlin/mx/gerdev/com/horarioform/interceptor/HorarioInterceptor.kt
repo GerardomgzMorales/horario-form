@@ -2,6 +2,7 @@ package mx.gerdev.com.horarioform.interceptor
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
+import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.ModelAndView
 import java.util.*
@@ -45,6 +46,10 @@ class HorarioInterceptor : HandlerInterceptor {
         handler: Any,
         modelAndView: ModelAndView?
     ) {
-        modelAndView?.addObject("horario", request.getAttribute("mensaje") as String)
+
+
+        if (handler is HandlerMethod) {
+            modelAndView?.let { it.addObject("horario", request.getAttribute("mensaje") as String) }
+        }
     }
 }
